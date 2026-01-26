@@ -1,0 +1,125 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: system-ui, sans-serif;
+}
+
+body {
+  background: #0b0b0b;
+  color: #fff;
+  overflow-x: hidden;
+}
+
+nav {
+  position: fixed;
+  bottom: 15px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(20,20,20,.8);
+  backdrop-filter: blur(10px);
+  padding: 10px 18px;
+  border-radius: 20px;
+  display: flex;
+  gap: 18px;
+  z-index: 10;
+}
+
+nav a {
+  color: #aaa;
+  text-decoration: none;
+  font-size: 14px;
+}
+
+nav a:hover {
+  color: #fff;
+}
+
+.section {
+  padding: 80px 20px;
+  max-width: 900px;
+  margin: auto;
+}
+
+.hero {
+  text-align: center;
+  padding-top: 120px;
+}
+
+.hero h1 {
+  font-size: 32px;
+  margin-bottom: 12px;
+}
+
+.btn {
+  display: inline-block;
+  margin-top: 20px;
+  padding: 10px 22px;
+  border-radius: 20px;
+  background: #fff;
+  color: #000;
+  text-decoration: none;
+}
+
+.rotating-ring {
+  width: 140px;
+  height: 140px;
+  border: 2px solid transparent;
+  border-top: 2px solid #fff;
+  border-radius: 50%;
+  margin: 0 auto 30px;
+  animation: spin 6s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+.stats {
+  display: flex;
+  justify-content: space-around;
+  margin: 40px 0;
+}
+
+.stat span {
+  font-size: 36px;
+  font-weight: bold;
+}
+
+.info-box {
+  background: #111;
+  border-radius: 18px;
+  padding: 25px;
+  margin-top: 30px;
+}
+
+.services li {
+  margin: 10px 0;
+  list-style: none;
+}
+
+.faq details {
+  background: #111;
+  padding: 15px;
+  border-radius: 14px;
+  margin-bottom: 10px;
+}
+
+.contact-cards {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.card {
+  background: #111;
+  padding: 20px;
+  border-radius: 16px;
+  flex: 1;
+}
+
+footer {
+  text-align: center;
+  padding: 40px 0 80px;
+  color: #777;
+}
