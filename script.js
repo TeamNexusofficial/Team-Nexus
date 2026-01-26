@@ -1,16 +1,14 @@
-/* Smooth scrolling */
+/* Smooth scroll */
 document.querySelectorAll('a[href^="#"]').forEach(link => {
   link.addEventListener("click", e => {
     e.preventDefault();
-    document
-      .querySelector(link.getAttribute("href"))
+    document.querySelector(link.getAttribute("href"))
       .scrollIntoView({ behavior: "smooth" });
   });
 });
 
-/* Scroll reveal animation */
-const revealElements = document.querySelectorAll(".reveal");
-
+/* Scroll reveal */
+const reveals = document.querySelectorAll(".reveal");
 const revealObserver = new IntersectionObserver(entries => {
   entries.forEach(entry => {
     if (entry.isIntersecting) {
@@ -19,37 +17,35 @@ const revealObserver = new IntersectionObserver(entries => {
   });
 }, { threshold: 0.15 });
 
-revealElements.forEach(el => revealObserver.observe(el));
+reveals.forEach(el => revealObserver.observe(el));
 
-/* Counter animation (ONLY for .count) */
+/* Count up */
 const counters = document.querySelectorAll(".count");
-
 const counterObserver = new IntersectionObserver(entries => {
   entries.forEach(entry => {
-    if (!entry.isIntersecting) return;
+    if (entry.isIntersecting) {
+      const el = entry.target;
+      const target = +el.dataset.target;
+      let current = 0;
 
-    const el = entry.target;
-    const target = Number(el.dataset.target);
-    let current = 0;
-
-    const update = () => {
-      current += Math.ceil(target / 60);
-      if (current >= target) {
-        el.textContent = target + "+";
-      } else {
-        el.textContent = current;
-        requestAnimationFrame(update);
-      }
-    };
-
-    update();
-    counterObserver.unobserve(el);
+      const update = () => {
+        current += Math.ceil(target / 60);
+        if (current >= target) {
+          el.textContent = target + "+";
+        } else {
+          el.textContent = current;
+          requestAnimationFrame(update);
+        }
+      };
+      update();
+      counterObserver.unobserve(el);
+    }
   });
 }, { threshold: 0.6 });
 
 counters.forEach(c => counterObserver.observe(c));
 
-/* Animated background particles */
+/* Background particles (soft like screenshots) */
 const canvas = document.getElementById("bg");
 const ctx = canvas.getContext("2d");
 
@@ -60,7 +56,7 @@ function resize() {
 resize();
 window.addEventListener("resize", resize);
 
-const particles = Array.from({ length: 60 }, () => ({
+const dots = Array.from({ length: 60 }, () => ({
   x: Math.random() * canvas.width,
   y: Math.random() * canvas.height,
   r: Math.random() * 1.8,
@@ -72,19 +68,18 @@ function animate() {
   ctx.clearRect(0, 0, canvas.width, canvas.height);
   ctx.fillStyle = "white";
 
-  particles.forEach(p => {
-    p.x += p.vx;
-    p.y += p.vy;
+  dots.forEach(d => {
+    d.x += d.vx;
+    d.y += d.vy;
 
-    if (p.x < 0 || p.x > canvas.width) p.vx *= -1;
-    if (p.y < 0 || p.y > canvas.height) p.vy *= -1;
+    if (d.x < 0 || d.x > canvas.width) d.vx *= -1;
+    if (d.y < 0 || d.y > canvas.height) d.vy *= -1;
 
     ctx.beginPath();
-    ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+    ctx.arc(d.x, d.y, d.r, 0, Math.PI * 2);
     ctx.fill();
   });
 
   requestAnimationFrame(animate);
 }
-
 animate();
