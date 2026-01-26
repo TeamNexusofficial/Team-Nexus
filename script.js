@@ -64,7 +64,7 @@ const counterObserver = new IntersectionObserver(entries => {
 
 counters.forEach(c => counterObserver.observe(c));
 
-/* Background particles (optimized) */
+/* Background particles */
 const canvas = document.getElementById("bg");
 const ctx = canvas.getContext("2d");
 
