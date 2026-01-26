@@ -11,14 +11,13 @@ body {
   overflow-x: hidden;
 }
 
-/* Background canvas */
 #bg {
   position: fixed;
   inset: 0;
   z-index: -1;
 }
 
-/* Top brand */
+/* Header */
 .top {
   position: fixed;
   top: 12px;
@@ -45,25 +44,20 @@ body {
   margin-top: 10px;
 }
 
-/* Discord button */
+/* Discord Button */
 .discord-btn {
   display: inline-block;
   margin-top: 30px;
-  padding: 14px 28px;
+  padding: 14px 26px;
   border-radius: 30px;
-  background: rgba(88,101,242,0.18);
-  border: 1px solid rgba(88,101,242,0.45);
+  background: rgba(88,101,242,0.15);
   color: #fff;
   text-decoration: none;
+  border: 1px solid rgba(88,101,242,0.4);
   backdrop-filter: blur(12px);
-  transition: transform 0.3s ease;
 }
 
-.discord-btn:hover {
-  transform: translateY(-4px);
-}
-
-/* Impact stats */
+/* Stats */
 .stats {
   display: flex;
   gap: 30px;
@@ -98,7 +92,7 @@ body {
   border: 1px solid rgba(255,255,255,0.08);
 }
 
-/* Bottom navigation */
+/* Bottom Nav */
 .bottom-nav {
   position: fixed;
   bottom: 14px;
