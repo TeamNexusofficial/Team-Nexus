@@ -19,6 +19,25 @@ const revealObserver = new IntersectionObserver(entries => {
 
 reveals.forEach(el => revealObserver.observe(el));
 
+/* Active nav highlight */
+const navLinks = document.querySelectorAll(".bottom-nav a");
+const sectionObserver = new IntersectionObserver(entries => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      navLinks.forEach(a =>
+        a.classList.toggle(
+          "active",
+          a.getAttribute("href").slice(1) === entry.target.id
+        )
+      );
+    }
+  });
+}, { threshold: 0.6 });
+
+document.querySelectorAll("section").forEach(sec =>
+  sectionObserver.observe(sec)
+);
+
 /* Count up */
 const counters = document.querySelectorAll(".count");
 const counterObserver = new IntersectionObserver(entries => {
@@ -45,7 +64,7 @@ const counterObserver = new IntersectionObserver(entries => {
 
 counters.forEach(c => counterObserver.observe(c));
 
-/* Background particles (soft like screenshots) */
+/* Background particles (optimized) */
 const canvas = document.getElementById("bg");
 const ctx = canvas.getContext("2d");
 
@@ -56,7 +75,9 @@ function resize() {
 resize();
 window.addEventListener("resize", resize);
 
-const dots = Array.from({ length: 60 }, () => ({
+let dotCount = window.innerWidth < 500 ? 30 : 60;
+
+const dots = Array.from({ length: dotCount }, () => ({
   x: Math.random() * canvas.width,
   y: Math.random() * canvas.height,
   r: Math.random() * 1.8,
