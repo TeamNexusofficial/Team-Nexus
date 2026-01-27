@@ -36,6 +36,21 @@ const observer = new IntersectionObserver(entries => {
 
 counters.forEach(c => observer.observe(c));
 
+/* Hero reveal animation */
+window.addEventListener("load", () => {
+  document.querySelectorAll(".reveal").forEach(el => {
+    let delay = 0;
+    if (el.classList.contains("delay-1")) delay = 120;
+    if (el.classList.contains("delay-2")) delay = 240;
+
+    setTimeout(() => {
+      el.style.transition = "opacity .8s ease, transform .8s ease";
+      el.style.opacity = "1";
+      el.style.transform = "translateY(0)";
+    }, delay);
+  });
+});
+
 /* Particle background */
 const canvas = document.getElementById("bg");
 const ctx = canvas.getContext("2d");
@@ -46,7 +61,6 @@ function resize() {
   w = canvas.width = window.innerWidth;
   h = canvas.height = window.innerHeight;
 }
-
 resize();
 window.addEventListener("resize", resize);
 
@@ -76,5 +90,4 @@ function animate() {
 
   requestAnimationFrame(animate);
 }
-
 animate();
