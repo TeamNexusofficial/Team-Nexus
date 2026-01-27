@@ -1,130 +1,38 @@
-/* ===============================
-   Smooth Scroll
-================================ */
-document.querySelectorAll('a[href^="#"]').forEach(link => {
-  link.addEventListener("click", e => {
-    e.preventDefault();
-    const target = document.querySelector(link.getAttribute("href"));
-    if (target) {
-      target.scrollIntoView({ behavior: "smooth" });
-    }
-  });
+// Mobile Menu Toggle Logic
+const mobileMenu = document.getElementById('mobile-menu');
+const navLinks = document.querySelector('.nav-links');
+
+mobileMenu.addEventListener('click', () => {
+    // Toggles a class that could be styled to show the menu in CSS
+    navLinks.classList.toggle('active');
+    
+    // Quick alert for demonstration
+    console.log("Mobile menu toggled");
 });
 
-
-/* ===============================
-   Hero Text Animation (staggered)
-================================ */
-window.addEventListener("load", () => {
-  const items = document.querySelectorAll(
-    ".hero-tag-wrap, .hero-brand, .hero-explain, .hero-main, .hero-desc"
-  );
-
-  items.forEach((el, i) => {
-    el.style.opacity = "0";
-    el.style.transform = "translateY(14px)";
-    el.style.transition = "opacity .8s ease, transform .8s ease";
-    setTimeout(() => {
-      el.style.opacity = "1";
-      el.style.transform = "translateY(0)";
-    }, i * 120);
-  });
+// Smooth Scroll Highlight (Optional)
+window.addEventListener('scroll', () => {
+    let header = document.querySelector('header');
+    header.classList.toggle('sticky', window.scrollY > 0);
 });
 
+// Simple Scroll Animation for Cards
+const observerOptions = {
+    threshold: 0.1
+};
 
-/* ===============================
-   FAQ Toggle
-================================ */
-document.querySelectorAll(".faq-item button").forEach(btn => {
-  btn.addEventListener("click", () => {
-    const content = btn.nextElementSibling;
-    const arrow = btn.querySelector("span");
-
-    const isOpen = content.style.display === "block";
-    document.querySelectorAll(".faq-item p").forEach(p => p.style.display = "none");
-    document.querySelectorAll(".faq-item span").forEach(s => s.style.transform = "rotate(0deg)");
-
-    if (!isOpen) {
-      content.style.display = "block";
-      arrow.style.transform = "rotate(180deg)";
-    }
-  });
-});
-
-
-/* ===============================
-   Count-Up (Impact Section)
-================================ */
-const counters = document.querySelectorAll(".count");
-
-const countObserver = new IntersectionObserver(entries => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting) {
-      const el = entry.target;
-      const target = +el.dataset.target;
-      let current = 0;
-
-      const step = Math.ceil(target / 60);
-
-      function update() {
-        current += step;
-        if (current >= target) {
-          el.textContent = target + "+";
-        } else {
-          el.textContent = current;
-          requestAnimationFrame(update);
+const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            entry.target.style.opacity = '1';
+            entry.target.style.transform = 'translateY(0)';
         }
-      }
+    });
+}, observerOptions);
 
-      update();
-      countObserver.unobserve(el);
-    }
-  });
-}, { threshold: 0.6 });
-
-counters.forEach(c => countObserver.observe(c));
-
-
-/* ===============================
-   Particle Background
-================================ */
-const canvas = document.getElementById("bg");
-const ctx = canvas.getContext("2d");
-
-let w, h;
-
-function resize() {
-  w = canvas.width = window.innerWidth;
-  h = canvas.height = window.innerHeight;
-}
-resize();
-window.addEventListener("resize", resize);
-
-const particles = Array.from({ length: 70 }, () => ({
-  x: Math.random() * w,
-  y: Math.random() * h,
-  r: Math.random() * 1.6 + 0.4,
-  vx: (Math.random() - 0.5) * 0.35,
-  vy: (Math.random() - 0.5) * 0.35
-}));
-
-function animateParticles() {
-  ctx.clearRect(0, 0, w, h);
-  ctx.fillStyle = "#fff";
-
-  particles.forEach(p => {
-    p.x += p.vx;
-    p.y += p.vy;
-
-    if (p.x < 0 || p.x > w) p.vx *= -1;
-    if (p.y < 0 || p.y > h) p.vy *= -1;
-
-    ctx.beginPath();
-    ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
-    ctx.fill();
-  });
-
-  requestAnimationFrame(animateParticles);
-}
-
-animateParticles();
+document.querySelectorAll('.service-card').forEach(card => {
+    card.style.opacity = '0';
+    card.style.transform = 'translateY(20px)';
+    card.style.transition = 'all 0.6s ease-out';
+    observer.observe(card);
+});
