@@ -1,57 +1,82 @@
-// 1. Moving Dots
-function initStars() {
+// 1. Generate Moving Stars Background
+function createStars() {
     const container = document.getElementById('star-container');
-    for (let i = 0; i < 70; i++) {
+    const starCount = 100;
+
+    for (let i = 0; i < starCount; i++) {
         const star = document.createElement('div');
         star.className = 'star';
+        
+        // Random size, position, and speed
         const size = Math.random() * 3 + 'px';
         star.style.width = size;
         star.style.height = size;
         star.style.left = Math.random() * 100 + '%';
-        star.style.animationDuration = (Math.random() * 10 + 5) + 's';
-        star.style.animationDelay = (Math.random() * 5) + 's';
+        star.style.top = Math.random() * 100 + '%';
+        
+        const duration = Math.random() * 10 + 5 + 's';
+        star.style.animationDuration = duration;
+        star.style.animationDelay = Math.random() * 5 + 's';
+
         container.appendChild(star);
     }
 }
 
-// 2. Count Animation
-function animateStats() {
+// 2. Animated Count-Up Logic
+function animateCounts() {
     const stats = document.querySelectorAll('.stat-number');
-    stats.forEach(s => {
-        const target = +s.getAttribute('data-target');
-        let count = 0;
-        const speed = target / 40;
-        const update = () => {
+    const speed = 100; // Lower is faster
+
+    stats.forEach(counter => {
+        const updateCount = () => {
+            const target = +counter.getAttribute('data-target');
+            const count = +counter.innerText;
+            const inc = target / speed;
+
             if (count < target) {
-                count += speed;
-                s.innerText = Math.ceil(count) + "+";
-                setTimeout(update, 30);
-            } else { s.innerText = target + "+"; }
+                counter.innerText = Math.ceil(count + inc);
+                setTimeout(updateCount, 20);
+            } else {
+                counter.innerText = target + "+";
+            }
         };
-        update();
+        updateCount();
     });
 }
 
-// 3. Scroll Tracking
+// 3. Scroll Tracking & Dock Highlighting
+const sections = document.querySelectorAll('section');
+const dockItems = document.querySelectorAll('.dock-item');
+
 window.addEventListener('scroll', () => {
     let current = "";
-    document.querySelectorAll('section').forEach(section => {
-        if (pageYOffset >= (section.offsetTop - 300)) current = section.getAttribute('id');
+    sections.forEach(section => {
+        const sectionTop = section.offsetTop;
+        const sectionHeight = section.clientHeight;
+        if (pageYOffset >= (sectionTop - sectionHeight / 3)) {
+            current = section.getAttribute('id');
+        }
     });
-    document.querySelectorAll('.dock-item').forEach(item => {
+
+    dockItems.forEach(item => {
         item.classList.remove('active');
-        if (item.getAttribute('href').includes(current)) item.classList.add('active');
+        if (item.getAttribute('href').slice(1) === current) {
+            item.classList.add('active');
+        }
     });
 });
 
-document.querySelectorAll('.faq-item').forEach(f => {
-    f.addEventListener('click', () => f.classList.toggle('active'));
-});
-
+// Initialize on load
 window.onload = () => {
-    initStars();
+    createStars();
+    
+    // Animate stats when impact section comes into view
     const observer = new IntersectionObserver((entries) => {
-        if (entries[0].isIntersecting) { animateStats(); observer.disconnect(); }
+        if(entries[0].isIntersecting) {
+            animateCounts();
+            observer.disconnect();
+        }
     }, { threshold: 0.5 });
+    
     observer.observe(document.querySelector('.impact'));
 };
