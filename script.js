@@ -1,32 +1,47 @@
-// 1. Moving White Dots (Stars) Generation
+// 1. Animated Starfield Background
+const canvas = document.getElementById('starfield');
+const ctx = canvas.getContext('2d');
+let stars = [];
+
 function initStars() {
-    const container = document.getElementById('star-container');
-    for (let i = 0; i < 80; i++) {
-        const star = document.createElement('div');
-        star.className = 'star';
-        const size = Math.random() * 3 + 'px';
-        star.style.width = size;
-        star.style.height = size;
-        star.style.left = Math.random() * 100 + '%';
-        star.style.top = Math.random() * 100 + '%';
-        star.style.animationDuration = (Math.random() * 10 + 5) + 's';
-        star.style.animationDelay = (Math.random() * 5) + 's';
-        container.appendChild(star);
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+    stars = [];
+    for (let i = 0; i < 150; i++) {
+        stars.push({
+            x: Math.random() * canvas.width,
+            y: Math.random() * canvas.height,
+            size: Math.random() * 2,
+            speed: Math.random() * 0.5 + 0.2
+        });
     }
 }
 
-// 2. Count-up Animation
-function animateStats() {
+function animateStars() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    ctx.fillStyle = "white";
+    stars.forEach(s => {
+        ctx.beginPath();
+        ctx.arc(s.x, s.y, s.size, 0, Math.PI * 2);
+        ctx.fill();
+        s.y -= s.speed; // Move up
+        if (s.y < 0) s.y = canvas.height;
+    });
+    requestAnimationFrame(animateStars);
+}
+
+// 2. Animated Counter Logic
+function animateCounters() {
     const stats = document.querySelectorAll('.stat-number');
     stats.forEach(s => {
         const target = +s.getAttribute('data-target');
-        let count = 0;
-        const speed = target / 50;
+        let current = 0;
+        const increment = target / 50;
         const update = () => {
-            if (count < target) {
-                count += speed;
-                s.innerText = Math.ceil(count);
-                setTimeout(update, 30);
+            if (current < target) {
+                current += increment;
+                s.innerText = Math.ceil(current) + "+";
+                setTimeout(update, 20);
             } else {
                 s.innerText = target + "+";
             }
@@ -35,33 +50,29 @@ function animateStats() {
     });
 }
 
-// 3. Scroll Tracking & FAQ Toggle
-const sections = document.querySelectorAll('section');
-const dockItems = document.querySelectorAll('.dock-item');
-
+// 3. Scroll Tracking for Dock
 window.addEventListener('scroll', () => {
     let current = "";
-    sections.forEach(section => {
-        if (pageYOffset >= (section.offsetTop - section.clientHeight / 3)) {
+    document.querySelectorAll('section').forEach(section => {
+        if (pageYOffset >= (section.offsetTop - 200)) {
             current = section.getAttribute('id');
         }
     });
-    dockItems.forEach(item => {
+    document.querySelectorAll('.dock-item').forEach(item => {
         item.classList.remove('active');
-        if (item.getAttribute('href').includes(current)) item.classList.add('active');
+        if (item.getAttribute('href').slice(1) === current) item.classList.add('active');
     });
 });
 
-document.querySelectorAll('.faq-item').forEach(f => {
-    f.addEventListener('click', () => f.classList.toggle('active'));
-});
-
-// Start everything on load
+window.addEventListener('resize', initStars);
 window.onload = () => {
     initStars();
+    animateStars();
+    
+    // Animate stats when visible
     const observer = new IntersectionObserver((entries) => {
-        if (entries[0].isIntersecting) {
-            animateStats();
+        if(entries[0].isIntersecting) {
+            animateCounters();
             observer.disconnect();
         }
     }, { threshold: 0.5 });
