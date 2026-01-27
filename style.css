@@ -1,116 +1,104 @@
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: 'Inter', sans-serif;
-}
-
 :root {
-    --primary-color: #5865F2; /* Discord-ish Blue */
-    --accent-color: #00d4ff;
-    --dark-bg: #0f172a;
-    --light-gray: #f8fafc;
+    --bg-black: #050505;
+    --card-bg: #0f0f0f;
+    --text-white: #ffffff;
+    --text-gray: #a0a0a0;
+    --accent-green: #00ff88;
+    --border-color: #1a1a1a;
 }
 
-html { scroll-behavior: smooth; }
-
-header {
-    background: #fff;
-    box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1);
-    position: sticky;
-    top: 0;
-    z-index: 1000;
+body {
+    background-color: var(--bg-black);
+    color: var(--text-white);
+    font-family: 'Inter', sans-serif;
+    line-height: 1.6;
+    margin: 0;
 }
 
+/* Navbar Styling */
 .navbar {
     display: flex;
     justify-content: space-between;
-    align-items: center;
-    padding: 1rem 5%;
-    max-width: 1200px;
-    margin: auto;
+    padding: 20px 5%;
+    background: rgba(5, 5, 5, 0.8);
+    backdrop-filter: blur(10px);
+    position: sticky;
+    top: 0;
+    z-index: 100;
 }
 
-.logo {
-    font-size: 1.6rem;
-    font-weight: 800;
-    letter-spacing: -1px;
+.nav-logo { height: 30px; margin-right: 10px; }
+.brand-name { font-weight: bold; font-size: 1.2rem; }
+.nav-links a { color: var(--text-gray); text-decoration: none; margin-left: 20px; font-size: 0.9rem; }
+
+/* Hero Section */
+.hero {
+    text-align: center;
+    padding: 100px 10% 60px;
 }
 
-.logo span { color: var(--primary-color); }
+.badge {
+    background: var(--card-bg);
+    border: 1px solid var(--border-color);
+    padding: 5px 15px;
+    border-radius: 20px;
+    display: inline-block;
+    font-size: 0.8rem;
+    color: var(--text-gray);
+    margin-bottom: 20px;
+}
 
-.nav-links { display: flex; list-style: none; align-items: center; }
+h1 { font-size: 3.5rem; line-height: 1.1; margin-bottom: 20px; }
+h1 span { color: var(--text-white); opacity: 0.9; }
 
-.nav-links li a {
+p { color: var(--text-gray); max-width: 600px; margin: 0 auto 30px; font-size: 1.1rem; }
+
+.btn-discord {
+    background: var(--text-white);
+    color: black;
+    padding: 12px 25px;
+    border-radius: 8px;
     text-decoration: none;
-    color: #334155;
-    margin: 0 15px;
-    font-weight: 600;
+    font-weight: bold;
 }
 
-.btn-contact {
-    background: var(--primary-color);
-    color: #fff !important;
-    padding: 8px 18px;
-    border-radius: 6px;
+/* Impact Section */
+.impact { text-align: center; padding: 60px 10%; }
+.stats-container { display: flex; justify-content: space-around; margin-top: 40px; }
+.stat-number { display: block; font-size: 3rem; font-weight: bold; }
+.stat-label { color: var(--text-gray); }
+
+/* Card Grids */
+.services-grid, .contact-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 20px;
+    padding: 40px 10%;
+}
+
+.service-card, .contact-card, .faq-item {
+    background: var(--card-bg);
+    border: 1px solid var(--border-color);
+    padding: 30px;
+    border-radius: 16px;
     transition: 0.3s;
 }
 
-.btn-contact:hover { background: #4752c4; }
+.icon-green { color: var(--accent-green); font-size: 1.5rem; margin-bottom: 15px; }
+.link-green { color: var(--accent-green); text-decoration: none; font-weight: bold; display: block; margin-top: 15px; }
 
-.hero {
-    height: 80vh;
-    background: linear-gradient(135deg, rgba(15,23,42,0.9) 0%, rgba(88,101,242,0.4) 100%), 
-                url('https://images.unsplash.com/photo-1550745165-9bc0b252726f?auto=format&fit=crop&w=1350&q=80');
-    background-size: cover;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    color: white;
+/* Contact Specifics */
+.card-logo { width: 40px; margin-bottom: 15px; }
+.subtext { font-size: 0.8rem; margin-top: 5px; }
+
+/* FAQ Styling */
+.faq-container { padding: 20px 10%; }
+.faq-item { margin-bottom: 10px; cursor: pointer; display: flex; justify-content: space-between; align-items: center; }
+
+footer { text-align: center; padding: 40px; color: var(--text-gray); border-top: 1px solid var(--border-color); }
+
+@media (max-width: 768px) {
+    h1 { font-size: 2.2rem; }
+    .stats-container { flex-direction: column; gap: 30px; }
+    .nav-links { display: none; }
 }
-
-.hero-content h1 { font-size: 4rem; margin-bottom: 1rem; }
-.hero-content span { color: var(--accent-color); }
-
-.btn-primary { 
-    background: var(--primary-color); 
-    color: white; 
-    padding: 15px 30px; 
-    text-decoration: none; 
-    border-radius: 5px; 
-    font-weight: bold;
-    display: inline-block;
-    margin: 10px;
-}
-
-.btn-secondary { 
-    border: 2px solid white; 
-    color: white; 
-    padding: 13px 28px; 
-    text-decoration: none; 
-    border-radius: 5px;
-    margin: 10px;
-    display: inline-block;
-}
-
-.services { padding: 5rem 5%; background: var(--light-gray); text-align: center; }
-.services-grid { 
-    display: grid; 
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); 
-    gap: 25px; 
-    max-width: 1200px; 
-    margin: auto; 
-}
-
-.service-card { background: white; padding: 40px; border-radius: 12px; transition: 0.3s; }
-.service-card:hover { transform: translateY(-5px); box-shadow: 0 10px 20px rgba(0,0,0,0.1); }
-.service-card i { font-size: 2.5rem; color: var(--primary-color); margin-bottom: 15px; }
-
-footer { background: var(--dark-bg); color: white; padding: 4rem 5% 2rem; }
-.footer-container { display: flex; justify-content: space-between; flex-wrap: wrap; max-width: 1200px; margin: auto; }
-.footer-links ul { list-style: none; margin-top: 10px; }
-.footer-links a { color: #94a3b8; text-decoration: none; line-height: 2.5; }
-.social-icons i { font-size: 1.5rem; margin-right: 20px; color: white; }
-
-.copyright { text-align: center; margin-top: 3rem; opacity: 0.6; font-size: 0.8rem; }
