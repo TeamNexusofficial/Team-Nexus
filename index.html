@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Team Nexus | Everything behind a great community</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
@@ -13,13 +13,6 @@
         <div class="logo-container">
             <img src="logo.png" alt="Team Nexus Logo" class="nav-logo">
             <span class="brand-name">Team Nexus</span>
-        </div>
-        <div class="nav-links">
-            <a href="#home">Home</a>
-            <a href="#impact">Impact</a>
-            <a href="#services">Services</a>
-            <a href="#faq">FAQ</a>
-            <a href="#contact">Contact</a>
         </div>
     </nav>
 
@@ -33,7 +26,8 @@
     </section>
 
     <section class="impact" id="impact">
-        <h2>Our Impact</h2>
+        <h2 class="section-title">Our Impact</h2>
+        <p class="section-subtitle">Building trust through quality service and dedication to creator success across multiple platforms and communities.</p>
         <div class="stats-container">
             <div class="stat-item">
                 <span class="stat-number">50+</span>
@@ -51,7 +45,8 @@
     </section>
 
     <section class="services" id="services">
-        <h2>What we help you with</h2>
+        <h2 class="section-title">What we help you with</h2>
+        <p class="section-subtitle">Everything your community needs, from visuals and systems to tools, handled in one place.</p>
         <div class="services-grid">
             <div class="service-card">
                 <i class="fas fa-palette icon-green"></i>
@@ -73,32 +68,69 @@
                 <h3>Bot Development</h3>
                 <p>Custom Discord bots for moderation, automation, and utilities.</p>
             </div>
+            <div class="service-card">
+                <i class="fas fa-globe icon-green"></i>
+                <h3>Web Development</h3>
+                <p>Landing pages, dashboards, and internal tools for communities.</p>
+            </div>
+            <div class="service-card">
+                <i class="fas fa-pen-nib icon-green"></i>
+                <h3>Script Writing</h3>
+                <p>High-retention scripts crafted for clarity and audience engagement.</p>
+            </div>
         </div>
     </section>
 
     <section class="faq" id="faq">
-        <h2>Frequently Asked Questions</h2>
+        <h2 class="section-title">Frequently Asked Questions</h2>
         <div class="faq-container">
             <div class="faq-item">
                 <div class="faq-question">What is Team Nexus and how does it work? <i class="fas fa-chevron-down"></i></div>
+                <div class="faq-answer">Team Nexus is a digital services agency built for creators and online communities. We handle design, development, server management, and automation so creators can focus on growth.</div>
             </div>
             <div class="faq-item">
                 <div class="faq-question">Who can work with Team Nexus? <i class="fas fa-chevron-down"></i></div>
+                <div class="faq-answer">We work with creators, community owners, and brands of all sizes, focusing on long-term potential rather than follower count alone.</div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question">How does the onboarding process work? <i class="fas fa-chevron-down"></i></div>
+                <div class="faq-answer">We review your requirements, discuss goals, and suggest the right services. Most onboardings are completed within a few days.</div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question">How long does it take to start a project? <i class="fas fa-chevron-down"></i></div>
+                <div class="faq-answer">Most projects begin within 24 to 72 hours after requirements are finalized.</div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question">How do you price your services? <i class="fas fa-chevron-down"></i></div>
+                <div class="faq-answer">Pricing depends on service type, complexity, and duration. We offer flexible one-time and ongoing plans.</div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question">How much creative control do clients have? <i class="fas fa-chevron-down"></i></div>
+                <div class="faq-answer">Clients maintain full creative control, with approvals at every stage.</div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question">Do you offer long-term management? <i class="fas fa-chevron-down"></i></div>
+                <div class="faq-answer">Yes. We offer both one-time services and long-term management solutions.</div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question">Is my data safe? <i class="fas fa-chevron-down"></i></div>
+                <div class="faq-answer">Yes. Security and confidentiality are a top priority.</div>
             </div>
             <div class="faq-item">
                 <div class="faq-question">How can I get started? <i class="fas fa-chevron-down"></i></div>
+                <div class="faq-answer">Contact us through our website or Discord to begin.</div>
             </div>
         </div>
     </section>
 
     <section class="contact" id="contact">
-        <h2>Get in touch</h2>
+        <h2 class="section-title">Get in touch</h2>
         <div class="contact-grid">
             <div class="contact-card">
                 <img src="logo.png" alt="Nexus" class="card-logo">
                 <h3>Official Discord Server</h3>
                 <p>400+ members | 97 online</p>
-                <a href="https://discord.gg/ZB79zvyrcy" class="link-green">Join Discord →</a>
+                <a href="https://discord.gg/ZB79zvyrcy" target="_blank" class="link-green">Join Discord →</a>
             </div>
             <div class="contact-card">
                 <i class="fas fa-envelope icon-green big-icon"></i>
@@ -113,5 +145,14 @@
         <p>&copy; 2026 Team Nexus. All rights reserved.</p>
     </footer>
 
+    <div class="bottom-dock">
+        <a href="#home" class="dock-item" data-section="home"><i class="fas fa-home"></i></a>
+        <a href="#impact" class="dock-item" data-section="impact"><i class="fas fa-chart-line"></i></a>
+        <a href="#services" class="dock-item" data-section="services"><i class="fas fa-shopping-bag"></i></a>
+        <a href="#faq" class="dock-item" data-section="faq"><i class="fas fa-question-circle"></i></a>
+        <a href="#contact" class="dock-item" data-section="contact"><i class="fas fa-envelope"></i></a>
+    </div>
+
+    <script src="script.js"></script>
 </body>
 </html>
