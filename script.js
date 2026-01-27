@@ -2,45 +2,16 @@
 document.querySelectorAll('a[href^="#"]').forEach(link => {
   link.addEventListener("click", e => {
     e.preventDefault();
-    document.querySelector(link.getAttribute("href"))
+    document
+      .querySelector(link.getAttribute("href"))
       .scrollIntoView({ behavior: "smooth" });
   });
 });
 
-/* Scroll reveal */
-const reveals = document.querySelectorAll(".reveal");
-const revealObserver = new IntersectionObserver(entries => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting) {
-      entry.target.classList.add("active");
-    }
-  });
-}, { threshold: 0.15 });
-
-reveals.forEach(el => revealObserver.observe(el));
-
-/* Active nav highlight */
-const navLinks = document.querySelectorAll(".bottom-nav a");
-const sectionObserver = new IntersectionObserver(entries => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting) {
-      navLinks.forEach(a =>
-        a.classList.toggle(
-          "active",
-          a.getAttribute("href").slice(1) === entry.target.id
-        )
-      );
-    }
-  });
-}, { threshold: 0.6 });
-
-document.querySelectorAll("section").forEach(sec =>
-  sectionObserver.observe(sec)
-);
-
-/* Count up */
+/* Count up animation */
 const counters = document.querySelectorAll(".count");
-const counterObserver = new IntersectionObserver(entries => {
+
+const observer = new IntersectionObserver(entries => {
   entries.forEach(entry => {
     if (entry.isIntersecting) {
       const el = entry.target;
@@ -56,51 +27,54 @@ const counterObserver = new IntersectionObserver(entries => {
           requestAnimationFrame(update);
         }
       };
+
       update();
-      counterObserver.unobserve(el);
+      observer.unobserve(el);
     }
   });
 }, { threshold: 0.6 });
 
-counters.forEach(c => counterObserver.observe(c));
+counters.forEach(c => observer.observe(c));
 
-/* Background particles */
+/* Particle background */
 const canvas = document.getElementById("bg");
 const ctx = canvas.getContext("2d");
 
+let w, h;
+
 function resize() {
-  canvas.width = window.innerWidth;
-  canvas.height = window.innerHeight;
+  w = canvas.width = window.innerWidth;
+  h = canvas.height = window.innerHeight;
 }
+
 resize();
 window.addEventListener("resize", resize);
 
-let dotCount = window.innerWidth < 500 ? 30 : 60;
-
-const dots = Array.from({ length: dotCount }, () => ({
-  x: Math.random() * canvas.width,
-  y: Math.random() * canvas.height,
-  r: Math.random() * 1.8,
-  vx: (Math.random() - 0.5) * 0.2,
-  vy: (Math.random() - 0.5) * 0.2
+const particles = Array.from({ length: 70 }, () => ({
+  x: Math.random() * w,
+  y: Math.random() * h,
+  r: Math.random() * 1.5 + 0.5,
+  vx: (Math.random() - 0.5) * 0.3,
+  vy: (Math.random() - 0.5) * 0.3
 }));
 
 function animate() {
-  ctx.clearRect(0, 0, canvas.width, canvas.height);
-  ctx.fillStyle = "white";
+  ctx.clearRect(0, 0, w, h);
+  ctx.fillStyle = "#fff";
 
-  dots.forEach(d => {
-    d.x += d.vx;
-    d.y += d.vy;
+  particles.forEach(p => {
+    p.x += p.vx;
+    p.y += p.vy;
 
-    if (d.x < 0 || d.x > canvas.width) d.vx *= -1;
-    if (d.y < 0 || d.y > canvas.height) d.vy *= -1;
+    if (p.x < 0 || p.x > w) p.vx *= -1;
+    if (p.y < 0 || p.y > h) p.vy *= -1;
 
     ctx.beginPath();
-    ctx.arc(d.x, d.y, d.r, 0, Math.PI * 2);
+    ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
     ctx.fill();
   });
 
   requestAnimationFrame(animate);
 }
+
 animate();
