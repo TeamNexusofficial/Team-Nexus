@@ -1,3 +1,11 @@
+/* General Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Inter', -apple-system, sans-serif;
+}
+
 :root {
     --bg-black: #050505;
     --card-bg: #0f0f0f;
@@ -10,95 +18,228 @@
 body {
     background-color: var(--bg-black);
     color: var(--text-white);
-    font-family: 'Inter', sans-serif;
-    line-height: 1.6;
-    margin: 0;
+    overflow-x: hidden; /* Fixes left-right scroll */
+    width: 100%;
 }
 
-/* Navbar Styling */
+html {
+    scroll-behavior: smooth;
+}
+
+/* Navbar */
 .navbar {
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     padding: 20px 5%;
     background: rgba(5, 5, 5, 0.8);
     backdrop-filter: blur(10px);
-    position: sticky;
+    position: fixed;
     top: 0;
+    width: 100%;
     z-index: 100;
 }
 
-.nav-logo { height: 30px; margin-right: 10px; }
-.brand-name { font-weight: bold; font-size: 1.2rem; }
-.nav-links a { color: var(--text-gray); text-decoration: none; margin-left: 20px; font-size: 0.9rem; }
+.logo-container {
+    display: flex;
+    align-items: center;
+}
 
-/* Hero Section */
+.nav-logo {
+    height: 30px;
+    margin-right: 10px;
+}
+
+.brand-name {
+    font-weight: bold;
+    font-size: 1.1rem;
+}
+
+/* Sections */
+section {
+    padding: 100px 5% 60px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.section-title {
+    font-size: 2.5rem;
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+.section-subtitle {
+    color: var(--text-gray);
+    text-align: center;
+    max-width: 600px;
+    margin: 0 auto 40px;
+}
+
+/* Hero */
 .hero {
     text-align: center;
-    padding: 100px 10% 60px;
+    padding-top: 150px;
 }
 
 .badge {
     background: var(--card-bg);
     border: 1px solid var(--border-color);
-    padding: 5px 15px;
+    padding: 6px 16px;
     border-radius: 20px;
-    display: inline-block;
     font-size: 0.8rem;
     color: var(--text-gray);
-    margin-bottom: 20px;
+    margin-bottom: 25px;
+    display: inline-block;
 }
 
-h1 { font-size: 3.5rem; line-height: 1.1; margin-bottom: 20px; }
-h1 span { color: var(--text-white); opacity: 0.9; }
+h1 {
+    font-size: clamp(2.2rem, 8vw, 4rem);
+    line-height: 1.1;
+    margin-bottom: 25px;
+}
 
-p { color: var(--text-gray); max-width: 600px; margin: 0 auto 30px; font-size: 1.1rem; }
+h1 span {
+    color: var(--text-gray);
+}
 
 .btn-discord {
     background: var(--text-white);
     color: black;
-    padding: 12px 25px;
-    border-radius: 8px;
+    padding: 14px 28px;
+    border-radius: 10px;
     text-decoration: none;
-    font-weight: bold;
-}
-
-/* Impact Section */
-.impact { text-align: center; padding: 60px 10%; }
-.stats-container { display: flex; justify-content: space-around; margin-top: 40px; }
-.stat-number { display: block; font-size: 3rem; font-weight: bold; }
-.stat-label { color: var(--text-gray); }
-
-/* Card Grids */
-.services-grid, .contact-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 20px;
-    padding: 40px 10%;
-}
-
-.service-card, .contact-card, .faq-item {
-    background: var(--card-bg);
-    border: 1px solid var(--border-color);
-    padding: 30px;
-    border-radius: 16px;
+    font-weight: 700;
+    display: inline-block;
     transition: 0.3s;
 }
 
-.icon-green { color: var(--accent-green); font-size: 1.5rem; margin-bottom: 15px; }
-.link-green { color: var(--accent-green); text-decoration: none; font-weight: bold; display: block; margin-top: 15px; }
+.btn-discord:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(255,255,255,0.2);
+}
 
-/* Contact Specifics */
-.card-logo { width: 40px; margin-bottom: 15px; }
-.subtext { font-size: 0.8rem; margin-top: 5px; }
+/* Impact Stats */
+.stats-container {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    gap: 30px;
+    margin-top: 50px;
+}
 
-/* FAQ Styling */
-.faq-container { padding: 20px 10%; }
-.faq-item { margin-bottom: 10px; cursor: pointer; display: flex; justify-content: space-between; align-items: center; }
+.stat-item {
+    text-align: center;
+}
 
-footer { text-align: center; padding: 40px; color: var(--text-gray); border-top: 1px solid var(--border-color); }
+.stat-number {
+    display: block;
+    font-size: 3.5rem;
+    font-weight: 800;
+}
 
+.stat-label {
+    color: var(--text-gray);
+    font-size: 1rem;
+}
+
+/* Grid Layouts */
+.services-grid, .contact-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+}
+
+.service-card, .contact-card {
+    background: var(--card-bg);
+    border: 1px solid var(--border-color);
+    padding: 35px;
+    border-radius: 20px;
+    transition: 0.3s;
+}
+
+.icon-green {
+    color: var(--accent-green);
+    font-size: 1.8rem;
+    margin-bottom: 20px;
+}
+
+/* FAQ */
+.faq-container {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.faq-item {
+    background: var(--card-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 15px;
+    margin-bottom: 12px;
+    overflow: hidden;
+    cursor: pointer;
+}
+
+.faq-question {
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-weight: 600;
+}
+
+.faq-answer {
+    padding: 0 20px;
+    max-height: 0;
+    overflow: hidden;
+    color: var(--text-gray);
+    transition: 0.3s ease-out;
+}
+
+.faq-item.active .faq-answer {
+    padding-bottom: 20px;
+    max-height: 200px;
+}
+
+/* Floating Dock */
+.bottom-dock {
+    position: fixed;
+    bottom: 25px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(15, 15, 15, 0.75);
+    backdrop-filter: blur(15px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 35px;
+    display: flex;
+    padding: 12px 25px;
+    gap: 25px;
+    z-index: 1000;
+}
+
+.dock-item {
+    color: #555;
+    font-size: 1.3rem;
+    text-decoration: none;
+    transition: 0.3s;
+}
+
+.dock-item.active {
+    color: var(--accent-green);
+    transform: scale(1.1);
+}
+
+footer {
+    text-align: center;
+    padding: 60px 20px 120px;
+    border-top: 1px solid var(--border-color);
+    color: var(--text-gray);
+    font-size: 0.9rem;
+}
+
+/* Responsive Fixes */
 @media (max-width: 768px) {
-    h1 { font-size: 2.2rem; }
-    .stats-container { flex-direction: column; gap: 30px; }
-    .nav-links { display: none; }
+    .stats-container {
+        flex-direction: column;
+    }
+    section {
+        padding: 60px 20px;
+    }
 }
