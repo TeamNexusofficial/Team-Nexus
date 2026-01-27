@@ -11,7 +11,7 @@ body {
   overflow-x: hidden;
 }
 
-/* Canvas background */
+/* Canvas */
 #bg {
   position: fixed;
   inset: 0;
@@ -60,9 +60,37 @@ body {
   text-align: center;
 }
 
-.hero h1 {
-  font-size: 2.2rem;
-  margin-bottom: 16px;
+/* HERO */
+.hero-wrap {
+  max-width: 820px;
+  margin: 0 auto;
+}
+
+.hero-tag {
+  font-size: 0.85rem;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: #aaa;
+  margin-bottom: 14px;
+}
+
+.hero-title {
+  font-size: clamp(2.4rem, 5vw, 3.6rem);
+  font-weight: 700;
+  line-height: 1.12;
+  margin-bottom: 22px;
+}
+
+.hero-sub {
+  font-size: 1rem;
+  line-height: 1.7;
+  color: #aaa;
+}
+
+/* Reveal animation base */
+.reveal {
+  opacity: 0;
+  transform: translateY(18px);
 }
 
 .muted {
