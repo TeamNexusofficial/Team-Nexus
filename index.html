@@ -8,10 +8,10 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body>
+    <div id="star-container"></div>
 
     <nav class="navbar">
         <div class="logo-container">
-            <img src="logo.png" alt="Team Nexus Logo" class="nav-logo">
             <span class="brand-name">Team Nexus</span>
         </div>
     </nav>
@@ -27,57 +27,41 @@
 
     <section class="impact" id="impact">
         <h2 class="section-title">Our Impact</h2>
-        <p class="section-subtitle">Building trust through quality service and dedication to creator success across multiple platforms and communities.</p>
+        <p class="section-subtitle">Building trust through quality service and dedication to creator success.</p>
+        
         <div class="stats-container">
             <div class="stat-item">
-                <span class="stat-number">50+</span>
+                <span class="stat-number" data-target="10">0</span>
                 <span class="stat-label">Creators</span>
             </div>
             <div class="stat-item">
-                <span class="stat-number">100+</span>
+                <span class="stat-number" data-target="10">0</span>
                 <span class="stat-label">Orders Completed</span>
             </div>
             <div class="stat-item">
-                <span class="stat-number">400+</span>
+                <span class="stat-number" data-target="50">0</span>
                 <span class="stat-label">People Who Trust Us</span>
+            </div>
+        </div>
+
+        <div class="trust-box">
+            <div class="trust-content">
+                <h3>Trusted by Creators</h3>
+                <p>From small startups to established content creators, we've helped build and maintain thriving communities. Our tailored approach ensures every project gets the attention it deserves.</p>
+                
+                <h3 style="margin-top: 25px;">Quality Guaranteed</h3>
+                <p>Every deliverable goes through rigorous quality checks. We don't just complete orders—we build lasting partnerships with creators who value excellence and reliability.</p>
             </div>
         </div>
     </section>
 
     <section class="services" id="services">
         <h2 class="section-title">What we help you with</h2>
-        <p class="section-subtitle">Everything your community needs, from visuals and systems to tools, handled in one place.</p>
         <div class="services-grid">
-            <div class="service-card">
-                <i class="fas fa-palette icon-green"></i>
-                <h3>Graphic Design</h3>
-                <p>Branding, banners, thumbnails, and visual assets built for creators.</p>
-            </div>
-            <div class="service-card">
-                <i class="fas fa-video icon-green"></i>
-                <h3>Video Editing</h3>
-                <p>Clean, engaging edits optimized for retention and platform growth.</p>
-            </div>
-            <div class="service-card">
-                <i class="fas fa-server icon-green"></i>
-                <h3>Server Management</h3>
-                <p>Day-to-day Discord server management, moderation, and optimization.</p>
-            </div>
-            <div class="service-card">
-                <i class="fas fa-robot icon-green"></i>
-                <h3>Bot Development</h3>
-                <p>Custom Discord bots for moderation, automation, and utilities.</p>
-            </div>
-            <div class="service-card">
-                <i class="fas fa-globe icon-green"></i>
-                <h3>Web Development</h3>
-                <p>Landing pages, dashboards, and internal tools for communities.</p>
-            </div>
-            <div class="service-card">
-                <i class="fas fa-pen-nib icon-green"></i>
-                <h3>Script Writing</h3>
-                <p>High-retention scripts crafted for clarity and audience engagement.</p>
-            </div>
+            <div class="service-card"><i class="fas fa-palette"></i><h3>Graphic Design</h3><p>Branding, banners, thumbnails, and visual assets built for creators.</p></div>
+            <div class="service-card"><i class="fas fa-video"></i><h3>Video Editing</h3><p>Clean, engaging edits optimized for retention and platform growth.</p></div>
+            <div class="service-card"><i class="fas fa-server"></i><h3>Server Management</h3><p>Day-to-day Discord server management, moderation, and optimization.</p></div>
+            <div class="service-card"><i class="fas fa-robot"></i><h3>Bot Development</h3><p>Custom Discord bots for moderation, automation, and utilities.</p></div>
         </div>
     </section>
 
@@ -86,31 +70,11 @@
         <div class="faq-container">
             <div class="faq-item">
                 <div class="faq-question">What is Team Nexus and how does it work? <i class="fas fa-chevron-down"></i></div>
-                <div class="faq-answer">Team Nexus is a digital services agency built for creators and online communities. We handle design, development, server management, and automation so creators can focus on growth.</div>
+                <div class="faq-answer">Team Nexus is a digital services agency built for creators and online communities. We handle design, development, server management, and automation.</div>
             </div>
             <div class="faq-item">
                 <div class="faq-question">Who can work with Team Nexus? <i class="fas fa-chevron-down"></i></div>
-                <div class="faq-answer">We work with creators, community owners, and brands of all sizes, focusing on long-term potential rather than follower count alone.</div>
-            </div>
-            <div class="faq-item">
-                <div class="faq-question">How does the onboarding process work? <i class="fas fa-chevron-down"></i></div>
-                <div class="faq-answer">We review your requirements, discuss goals, and suggest the right services. Most onboardings are completed within a few days.</div>
-            </div>
-            <div class="faq-item">
-                <div class="faq-question">How long does it take to start a project? <i class="fas fa-chevron-down"></i></div>
-                <div class="faq-answer">Most projects begin within 24 to 72 hours after requirements are finalized.</div>
-            </div>
-            <div class="faq-item">
-                <div class="faq-question">How do you price your services? <i class="fas fa-chevron-down"></i></div>
-                <div class="faq-answer">Pricing depends on service type, complexity, and duration. We offer flexible one-time and ongoing plans.</div>
-            </div>
-            <div class="faq-item">
-                <div class="faq-question">How much creative control do clients have? <i class="fas fa-chevron-down"></i></div>
-                <div class="faq-answer">Clients maintain full creative control, with approvals at every stage.</div>
-            </div>
-            <div class="faq-item">
-                <div class="faq-question">Do you offer long-term management? <i class="fas fa-chevron-down"></i></div>
-                <div class="faq-answer">Yes. We offer both one-time services and long-term management solutions.</div>
+                <div class="faq-answer">We work with creators, community owners, and brands of all sizes, focusing on long-term potential.</div>
             </div>
             <div class="faq-item">
                 <div class="faq-question">Is my data safe? <i class="fas fa-chevron-down"></i></div>
@@ -127,13 +91,11 @@
         <h2 class="section-title">Get in touch</h2>
         <div class="contact-grid">
             <div class="contact-card">
-                <img src="logo.png" alt="Nexus" class="card-logo">
                 <h3>Official Discord Server</h3>
-                <p>400+ members | 97 online</p>
-                <a href="https://discord.gg/ZB79zvyrcy" target="_blank" class="link-green">Join Discord →</a>
+                <a href="https://discord.gg/ZB79zvyrcy" target="_blank" class="link-blue">Join Discord →</a>
             </div>
             <div class="contact-card">
-                <i class="fas fa-envelope icon-green big-icon"></i>
+                <i class="fas fa-envelope icon-blue big-icon"></i>
                 <h3>Email us</h3>
                 <p>teamnexus.official26@gmail.com</p>
                 <p class="subtext">Best for brand inquiries and proposals.</p>
@@ -146,11 +108,11 @@
     </footer>
 
     <div class="bottom-dock">
-        <a href="#home" class="dock-item" data-section="home"><i class="fas fa-home"></i></a>
-        <a href="#impact" class="dock-item" data-section="impact"><i class="fas fa-chart-line"></i></a>
-        <a href="#services" class="dock-item" data-section="services"><i class="fas fa-shopping-bag"></i></a>
-        <a href="#faq" class="dock-item" data-section="faq"><i class="fas fa-question-circle"></i></a>
-        <a href="#contact" class="dock-item" data-section="contact"><i class="fas fa-envelope"></i></a>
+        <a href="#home" class="dock-item" data-section="home"><i class="fas fa-home"></i><span class="indicator"></span></a>
+        <a href="#impact" class="dock-item" data-section="impact"><i class="fas fa-chart-line"></i><span class="indicator"></span></a>
+        <a href="#services" class="dock-item" data-section="services"><i class="fas fa-shopping-bag"></i><span class="indicator"></span></a>
+        <a href="#faq" class="dock-item" data-section="faq"><i class="fas fa-question-circle"></i><span class="indicator"></span></a>
+        <a href="#contact" class="dock-item" data-section="contact"><i class="fas fa-envelope"></i><span class="indicator"></span></a>
     </div>
 
     <script src="script.js"></script>
