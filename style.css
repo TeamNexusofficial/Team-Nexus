@@ -15,15 +15,14 @@
     --border-color: #1a1a1a;
 }
 
+html {
+    scroll-behavior: smooth;
+}
+
 body {
     background-color: var(--bg-black);
     color: var(--text-white);
-    overflow-x: hidden; /* Fixes left-right scroll */
-    width: 100%;
-}
-
-html {
-    scroll-behavior: smooth;
+    overflow-x: hidden;
 }
 
 /* Navbar */
@@ -37,20 +36,17 @@ html {
     top: 0;
     width: 100%;
     z-index: 100;
+    border-bottom: 1px solid rgba(255,255,255,0.05);
 }
 
 .logo-container {
     display: flex;
     align-items: center;
-}
-
-.nav-logo {
-    height: 30px;
-    margin-right: 10px;
+    justify-content: center;
 }
 
 .brand-name {
-    font-weight: bold;
+    font-weight: 700;
     font-size: 1.1rem;
 }
 
@@ -131,24 +127,24 @@ h1 span {
 }
 
 .stat-number {
-    display: block;
     font-size: 3.5rem;
     font-weight: 800;
 }
 
 .stat-label {
     color: var(--text-gray);
-    font-size: 1rem;
 }
 
-/* Grid Layouts */
-.services-grid, .contact-grid {
+/* Grids */
+.services-grid,
+.contact-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     gap: 20px;
 }
 
-.service-card, .contact-card {
+.service-card,
+.contact-card {
     background: var(--card-bg);
     border: 1px solid var(--border-color);
     padding: 35px;
@@ -156,10 +152,20 @@ h1 span {
     transition: 0.3s;
 }
 
+.service-card:hover,
+.contact-card:hover {
+    transform: translateY(-6px);
+    border-color: rgba(0, 255, 136, 0.3);
+}
+
 .icon-green {
     color: var(--accent-green);
     font-size: 1.8rem;
     margin-bottom: 20px;
+}
+
+.big-icon {
+    font-size: 2.2rem;
 }
 
 /* FAQ */
@@ -173,8 +179,8 @@ h1 span {
     border: 1px solid var(--border-color);
     border-radius: 15px;
     margin-bottom: 12px;
-    overflow: hidden;
     cursor: pointer;
+    overflow: hidden;
 }
 
 .faq-question {
@@ -185,17 +191,20 @@ h1 span {
     font-weight: 600;
 }
 
+.faq-question i {
+    transition: transform 0.3s;
+}
+
+.faq-item.active i {
+    transform: rotate(180deg);
+}
+
 .faq-answer {
     padding: 0 20px;
     max-height: 0;
     overflow: hidden;
     color: var(--text-gray);
-    transition: 0.3s ease-out;
-}
-
-.faq-item.active .faq-answer {
-    padding-bottom: 20px;
-    max-height: 200px;
+    transition: max-height 0.3s ease;
 }
 
 /* Floating Dock */
@@ -221,11 +230,17 @@ h1 span {
     transition: 0.3s;
 }
 
-.dock-item.active {
-    color: var(--accent-green);
+.dock-item:hover {
+    color: var(--text-white);
     transform: scale(1.1);
 }
 
+.dock-item.active {
+    color: var(--accent-green);
+    transform: scale(1.15);
+}
+
+/* Footer */
 footer {
     text-align: center;
     padding: 60px 20px 120px;
@@ -234,12 +249,15 @@ footer {
     font-size: 0.9rem;
 }
 
-/* Responsive Fixes */
+/* Responsive */
 @media (max-width: 768px) {
     .stats-container {
         flex-direction: column;
     }
+
     section {
         padding: 60px 20px;
     }
 }
+
+  
